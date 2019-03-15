@@ -4,6 +4,7 @@ import com.example.demolista.form.CityForm;
 import com.example.demolista.model.City;
 import com.example.demolista.model.Code;
 import com.example.demolista.repository.CityRepository;
+import com.example.demolista.repository.CodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +18,27 @@ public class CityService {
 
 
     final CityRepository cityRepository;
-
+    final CodeRepository codeRepository;
     @Autowired
-    public CityService(CityRepository cityRepository) {
+    public CityService(CityRepository cityRepository, CodeRepository codeRepository) {
         this.cityRepository = cityRepository;
+        this.codeRepository = codeRepository;
     }
+
+
+
 
 
     public List<City> getCities() {
 
         List<City> cityList = cityRepository.findAll();
         return cityList;
+    }
+
+    public List<Code> getCodes() {
+
+        List<Code>codeList = codeRepository.findAll();
+        return codeList;
     }
 
     public void saveCity(CityForm cityForm) {

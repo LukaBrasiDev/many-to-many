@@ -25,6 +25,7 @@ public class HomeController {
     public String home(Model model){
 
         model.addAttribute("cities", cityService.getCities());
+        model.addAttribute("codes", cityService.getCities());
 
         return "index";
     }
