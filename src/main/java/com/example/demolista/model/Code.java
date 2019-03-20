@@ -31,8 +31,8 @@ public class Code {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Code)) return false;
-        Code tag = (Code) o;
-        return Objects.equals(getCode(), tag.getCode());
+        Code code = (Code) o;
+        return Objects.equals(getCode(), code.getCode());
     }
 
     @Override

@@ -6,14 +6,15 @@
 </head>
 <body>
 
+<table border="1">
+    <tr th:each="c :  ${cities}">
+        <td><span th:text="${c.name}"/></td>
+        <td><span th:each="k,iterStat: ${c.codes}"><span th:text="${k.code}"/><th:block th:if="${!iterStat.last}">, </th:block></span></td>
+    </tr>
+</table>
 
-<ul th:each="c: ${cities}">
-    <li th:text="${c.name}"></li>
 
-</ul>
-
-
-<form th:action="@{/}" th:object="${cities}"  method="post">
+<form th:action="@{/}" th:object="${cities}" method="post">
     <div class="form-group">
         <label for="exampleInputEmail1">Miasto</label>
         <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -23,7 +24,7 @@
 
     <div class="mb-3">
         <label for="validationTextarea">Kody:</label>
-        <textarea name="code" class="form-control is-invalid" id="validationTextarea" ></textarea>
+        <textarea name="code" class="form-control is-invalid" id="validationTextarea"></textarea>
 
     </div>
 
