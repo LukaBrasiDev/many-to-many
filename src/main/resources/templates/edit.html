@@ -2,35 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DEMO</title>
+    <title>Title</title>
 </head>
 <body>
+<table>
 
-<table border="1">
-    <tr th:each="c :  ${cities}">
-        <td><span th:text="${c.name}"/></td>
-        <td><span th:each="k,iterStat: ${c.codes}"><span th:text="${k.code}"/><th:block th:if="${!iterStat.last}">, </th:block></span></td>
-        <td> <a class="btn btn-outline-secondary" th:href="@{/edit/{id}(id=${c.id})}" role="button">Edytuj</a> </td>
+    <tr>
+        <td>
+            <span th:text="${city.name}"></span>
+        </td>
+        <td>
+        <td><span th:each="k,iterStat: ${city.codes}"><span th:text="${k.code}"/><th:block
+                th:if="${!iterStat.last}">, </th:block></span></td>
+        </td>
     </tr>
 </table>
 
-
-<form th:action="@{/}" th:object="${cities}" method="post">
+EDYCJA:
+<form th:action="@{/}" th:object="${city}" method="post">
     <div class="form-group">
         <label for="exampleInputEmail1">Miasto</label>
         <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
     </div>
-
 
     <div class="mb-3">
         <label for="validationTextarea">Kody:</label>
         <textarea name="code" class="form-control is-invalid" id="validationTextarea"></textarea>
-
     </div>
-
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+
+<a href="/">back</a>
 </body>
 </html>

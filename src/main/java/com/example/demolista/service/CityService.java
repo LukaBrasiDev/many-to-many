@@ -61,5 +61,11 @@ public class CityService {
         cityRepository.save(cityNew);
     }
 
+    public City getCityById(Long id) {
+
+        Optional<City> optionalCity = cityRepository.findById(id);
+        return optionalCity.get();
+    }
+
 
 }
