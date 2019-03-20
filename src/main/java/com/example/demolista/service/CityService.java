@@ -57,7 +57,7 @@ public class CityService {
         }
 
         cityNew.setCodes(codes);
-        System.out.println(codes);
+
         cityRepository.save(cityNew);
     }
 
@@ -65,6 +65,31 @@ public class CityService {
 
         Optional<City> optionalCity = cityRepository.findById(id);
         return optionalCity.get();
+    }
+
+    public void updateCity(Long id, CityForm cityForm) {
+
+        Optional<City> optionalCity = cityRepository.findById(id);
+
+        optionalCity.get().setName(cityForm.getName());
+
+        Set<Code> codes = new HashSet<Code>();
+
+
+        String[] stringCodes = cityForm.getCode().split(",");
+        for (int i = 0; i < stringCodes.length; i++) {
+            Code code = new Code();
+            code.setCode(stringCodes[i]);
+            codes.add(code);
+        }
+
+        optionalCity.get().setCodes(codes);
+
+
+
+
+        cityRepository.save(optionalCity.get());
+
     }
 
 

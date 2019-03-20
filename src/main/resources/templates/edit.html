@@ -19,15 +19,23 @@
 </table>
 
 EDYCJA:
-<form th:action="@{/}" th:object="${city}" method="post">
+<form th:action="@{/edit/{id}(id=${city.id})}" th:object="${city}" method="post">
     <div class="form-group">
         <label for="exampleInputEmail1">Miasto</label>
-        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:value="${city.name}">
     </div>
 
     <div class="mb-3">
-        <label for="validationTextarea">Kody:</label>
-        <textarea name="code" class="form-control is-invalid" id="validationTextarea"></textarea>
+        <label >Kody:</label>
+
+        <div th:each="k,iterStat: ${city.codes}">
+            <div>
+                Name:
+                <input name="code" type="text" th:value="${k.code}"/>
+          <th:block th:if="${!iterStat.last}">, </th:block>
+            </div>
+        </div>
+
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

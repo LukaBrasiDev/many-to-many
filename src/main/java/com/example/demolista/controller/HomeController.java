@@ -19,7 +19,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home(Model model){
+    public String home(Model model) {
 
         model.addAttribute("cities", cityService.getCities());
         model.addAttribute("codes", cityService.getCities());
@@ -29,8 +29,8 @@ public class HomeController {
 
 
     @PostMapping("/")
-    public String  send(@ModelAttribute CityForm cityForm, Model model){
-       cityService.saveCity(cityForm);
+    public String send(@ModelAttribute CityForm cityForm, Model model) {
+        cityService.saveCity(cityForm);
         model.addAttribute("cities", cityService.getCities());
 
         return "index";
@@ -44,6 +44,16 @@ public class HomeController {
         return "edit";
     }
 
+    @PostMapping("/edit/{id}")
+    public String updateCity(
+            @PathVariable Long id,
+            @ModelAttribute CityForm cityForm, Model model) {
+        cityService.updateCity(id, cityForm);
+        model.addAttribute("city", cityService.getCityById(id));
+
+        return "edit";
+
+    }
 
 
 }
